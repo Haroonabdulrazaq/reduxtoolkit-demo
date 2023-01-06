@@ -1,20 +1,25 @@
-import { CAKE_ORDERED } from './action'
+const redux = require('redux')
+
+const createStore = redux.createStore()
 
 const initialState = {
-  numOfCake: 10
+  numOfCakes: 10, 
+  anotherProperty: 0
 }
 
 const reducer = (state=initialState, action) =>{
   switch (action.type) {
     case CAKE_ORDERED:
       return {
-        numOfCake: state.numOfCake - 1
+        ...state,
+        numOfCakes: state.numOfCakes - 1
       }
-  
     default:
       return state
   }
 
 }
 
- export default reducer;
+const store = createStore(reducer)
+
+console.log('Initial State', store.getState());
