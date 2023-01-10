@@ -1,8 +1,10 @@
 const redux = require('redux')
-const produce = require('immer').produce
-
+const produce = require('immer').produce  
+const reduxLogger = require('redux-logger')
 const combineReducers = redux.combineReducers
+// const applyMiddleware = redux.applyMiddleware
 const bindActionCreatores = redux.bindActionCreators
+// const logger = reduxLogger.createLogger()
 
 
 // action.js
@@ -24,7 +26,6 @@ const restockCake = (payload)=>{
     payload
   }
 }
-
 
 const orderIceCream = (payload = 1) =>{
   return {
@@ -84,7 +85,6 @@ const iceCreamReducer = (state=initialIceCreamState, action) =>{
 
 
 //combine all reducer into One
-
 const rootReducer = combineReducers({
   cake: cakeReducer,
   iceCream: iceCreamReducer
@@ -94,13 +94,11 @@ const rootReducer = combineReducers({
 
 
 // Store
-const store = createStore(rootReducer)
+const store = createStore(rootReducer) // , applyMiddleware(logger)
 
 console.log('Initial State', store.getState());
 
-const unsubscribe = store.subscribe(()=> 
-  console.log('Update store', store.getState())
-)
+const unsubscribe = store.subscribe(()=> console.log('Updated State', store.getState()))
 
 const actions = bindActionCreatores({orderCake, restockCake, orderIceCream, restockIceCream}, store.dispatch)
 
