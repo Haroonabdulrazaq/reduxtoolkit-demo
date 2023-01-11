@@ -12,8 +12,8 @@
     ordered: (state)=>{
       state.numOfCakes--
     },
-    restock: (state, action)=>{
-      state.numOfCakes + action.payload
+    restocked: (state, action)=>{ 
+      state.numOfCakes += action.payload
     }
   }
  })
