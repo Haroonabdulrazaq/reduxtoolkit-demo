@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Haroonabdulrazaq/reduxtoolkit-demo#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.2",
     "immer": "^9.0.17",
     "redux": "^4.2.0",
