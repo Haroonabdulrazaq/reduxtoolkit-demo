@@ -20,5 +20,3 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export default cakeSlice.reducer
 export const { ordered, restocked } = cakeSlice.actions
-
-export const cakeAmount = (state)=> state.numOfCake
