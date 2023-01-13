@@ -1,5 +1,5 @@
 const store = require('./app/store');
-const { fetchUsers } = require('./features/user/userSlice')
+const { fetchUsers } = require('./features/user/userSlice');
 // const cakeActions = require('./features/cake/cakeSlice').cakeActions
 // const iceCreamActions = require('./features/icecream/icecreamSlice').iceCreamActions
 
@@ -9,7 +9,6 @@ console.log('Initial State', store.getState());
 store.subscribe(()=>{
   console.log('Updated State', store.getState());
 })
-
 store.dispatch(fetchUsers())
 
 // Cake
@@ -18,7 +17,7 @@ store.dispatch(fetchUsers())
 // store.dispatch(cakeActions.ordered())
 // store.dispatch(cakeActions.restocked(4))
 
-//Icecream
+// Icecream
 // store.dispatch(iceCreamActions.ordered())
 // store.dispatch(iceCreamActions.ordered())
 // store.dispatch(iceCreamActions.ordered())
