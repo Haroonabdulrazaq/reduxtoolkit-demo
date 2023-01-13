@@ -2,9 +2,9 @@ const redux = require('redux')
 const produce = require('immer').produce  
 const reduxLogger = require('redux-logger')
 const combineReducers = redux.combineReducers
-// const applyMiddleware = redux.applyMiddleware
+const applyMiddleware = redux.applyMiddleware
 const bindActionCreatores = redux.bindActionCreators
-// const logger = reduxLogger.createLogger()
+const logger = reduxLogger.createLogger()
 
 
 // action.js
@@ -94,7 +94,7 @@ const rootReducer = combineReducers({
 
 
 // Store
-const store = createStore(rootReducer) // , applyMiddleware(logger)
+const store = createStore(rootReducer, applyMiddleware(logger)) 
 
 console.log('Initial State', store.getState());
 

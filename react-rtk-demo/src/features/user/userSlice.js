@@ -1,6 +1,5 @@
-const axios = require('axios')
-const createSlice = require('@reduxjs/toolkit').createSlice
-const createAsyncThunk = require('@reduxjs/toolkit').createAsyncThunk
+import { createSlice , createAsyncThunk} from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const initialState = {
   loading: false,
@@ -8,7 +7,7 @@ const initialState = {
   error: ''
 }
 
-const fetchUsers = createAsyncThunk('user/fetchUsers' ,async ()=>{
+export const fetchUsers = createAsyncThunk('user/fetchUsers' ,async ()=>{
   const response = await axios.get('https://jsonplaceholder.typicode.com/usersaas')
   const data = response.data.map((user)=> user.id)
   return data
@@ -38,5 +37,4 @@ const userSlice = createSlice({
   }
 })
 
-module.exports = userSlice.reducer
-module.exports.fetchUsers = fetchUsers
+export default userSlice.reducer
