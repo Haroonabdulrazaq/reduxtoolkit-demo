@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 const IntervalHookCounter = () => {
   const [count, setCount] = useState(0)
+
   useEffect(() => {
    const interval =  setInterval(tick,1000)
 
@@ -13,7 +14,6 @@ const IntervalHookCounter = () => {
   const tick = ()=>{
     setCount(count + 1)
   }
-
 
   return (
     <div>{count}</div>
