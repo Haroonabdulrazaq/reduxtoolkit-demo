@@ -16,3 +16,8 @@ useEffect(()=>{
   }
 },[])
 </code>
+
+# in Component folder
+
+ComponentA, ComponentB, ComponentC, ComponentD, ComponentE, ComponentF demonstrate using useReducer
+and useContext to manage state in an Application
