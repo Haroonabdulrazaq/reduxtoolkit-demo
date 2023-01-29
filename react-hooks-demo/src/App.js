@@ -1,11 +1,11 @@
-import React  from 'react'
+import React, { useEffect }  from 'react'
 import './App.css';
 import FocusInput from './components/FocusInput';
 
 
 
 const  App= ()=>  {
-
+ 
   return (
     <div className='App'>
       <FocusInput/>
