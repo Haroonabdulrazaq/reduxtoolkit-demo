@@ -1,15 +1,20 @@
-import React, { useEffect }  from 'react'
+import React, { createContext, useEffect, useState }  from 'react'
 import './App.css';
-import FocusInput from './components/FocusInput';
+import DocsTitleOne from './components/DocsTitleOne';
+import DocTitleTwo from './components/DocTitleTwo';
 
 
+export const countContext = createContext()
 
 const  App= ()=>  {
- 
+   const [count, setCount] = useState(0)
   return (
-    <div className='App'>
-      <FocusInput/>
-    </div>
+    <countContext.Provider value={{count, setCount}}>
+      <div className='App'>
+        <DocsTitleOne />
+        <DocTitleTwo />
+      </div>
+    </countContext.Provider>
   );
 }
 
