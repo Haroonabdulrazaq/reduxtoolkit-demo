@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState }  from 'react'
 import './App.css';
-import DocsTitleOne from './components/DocsTitleOne';
-import DocTitleTwo from './components/DocTitleTwo';
+import UserForm from './components/UserForm';
 
 
 export const countContext = createContext()
@@ -11,8 +10,7 @@ const  App= ()=>  {
   return (
     <countContext.Provider value={{count, setCount}}>
       <div className='App'>
-        <DocsTitleOne />
-        <DocTitleTwo />
+        <UserForm />
       </div>
     </countContext.Provider>
   );
