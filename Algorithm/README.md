@@ -25,3 +25,6 @@
 - push()/ pop() - O(1)
 - shift()/unshift() /splice() /slice() /concat() - O(n)
 - forEach()/ map()/ reduce()/ filter() - O(n)
+
+#Big O: graph showing perfomance of each elements
+![screenshot](./BigO%20graph.PNG)

@@ -1,6 +1,4 @@
-
 const isPrime = (num) => {
-
   if(num < 2) {        // Prime number are numbers divisible by 1 and itself
     return false    // Hence this condition checks for that and checks if its a natural number
   }
