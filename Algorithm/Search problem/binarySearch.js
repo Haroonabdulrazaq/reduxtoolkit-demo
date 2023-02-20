@@ -12,9 +12,9 @@ const binarySearch = (arr, target)=>{
   }
   return -1
 }
-console.log(binarySearch([-5,2,4,6,10], 10)); // 4
-console.log(binarySearch([-5,2,4,6,10], 6)); // 3
-console.log(binarySearch([-5,2,4,6,10], 20)); // -1
+// console.log(binarySearch([-5,2,4,6,10], 10)); // 4
+// console.log(binarySearch([-5,2,4,6,10], 6)); // 3
+// console.log(binarySearch([-5,2,4,6,10], 20)); // -1
 
 
 // Big O(n) - The above Algorithm has a Linear Time Complexity
@@ -41,6 +41,33 @@ const binarySearcher = (arr, target) =>{
 }
 // Big O(logn) - The above Algorithm has a Linear Time Complexity
 
-console.log(binarySearcher([-5,2,4,6,10], 10)); // 4
-console.log(binarySearcher([-5,2,4,6,10], 6)); // 3
-console.log(binarySearcher([-5,2,4,6,10], 20)); // -1
+
+
+
+// Recursive Binary Search
+
+
+const recursiveBinarySearch =(arr, target)=>{
+  return searchBinary(arr, target, 0, arr.length -1)
+}
+
+const searchBinary =(arr, target, leftIndex, rightIndex) =>{
+  if(leftIndex > rightIndex){
+    return -1
+  }
+  let middleIndex = Math.floor((leftIndex + rightIndex)/2)
+  if(target ===arr[middleIndex]) {
+    return middleIndex
+  }
+  if(target < arr[middleIndex]) {
+    return searchBinary(arr, target, leftIndex, middleIndex -1)
+  }else {
+    return searchBinary(arr, target, middleIndex + 1, rightIndex)
+  }
+}
+
+// Big O(logn)
+
+console.log(recursiveBinarySearch([-5,2,4,6,10], 10)); // 4
+console.log(recursiveBinarySearch([-5,2,4,6,10], 6)); // 3
+console.log(recursiveBinarySearch([-5,2,4,6,10], 20)); // -1
