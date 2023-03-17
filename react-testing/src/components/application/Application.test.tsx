@@ -18,12 +18,20 @@ describe('Application Test', ()=>{
     let nameElement =  screen.getByRole("textbox", {
       name: 'Name'
     })
-    expect(nameElement).toBeInTheDocument()
 
+    const paragraphElement = screen.getByText("All fields are mandatory")
+    expect(paragraphElement).toBeInTheDocument()
+
+    expect(nameElement).toBeInTheDocument()
     const nameElement2 = screen.getByLabelText('Name', {
       selector: 'input'
     })
     expect(nameElement2).toBeInTheDocument()
+
+    const nameElement3 = screen.getByPlaceholderText('Fullname', {
+      exact: true
+    })
+    expect(nameElement3).toBeInTheDocument()
 
     let bioElement = screen.getByRole("textbox", {
       name: 'Bio'
