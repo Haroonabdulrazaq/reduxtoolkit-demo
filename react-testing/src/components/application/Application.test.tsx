@@ -25,8 +25,17 @@ describe('Application Test', ()=>{
     const closeElement = screen.getByTitle("close")
     expect(closeElement).toBeInTheDocument()
     
+    // Substring Match with a String
     const paragraphElement = screen.getByText("All fields are mandatory")
     expect(paragraphElement).toBeInTheDocument()
+    
+    // Substring Match with a Regex
+    const paragraphElement1 = screen.getByText(/^All fields are mandatory$/i)
+    expect(paragraphElement1).toBeInTheDocument()
+    
+    // Substring Match with a Custom Function
+    const paragraphElement2 = screen.getByText((content)=> content.startsWith('All'))
+    expect(paragraphElement2).toBeInTheDocument()
     
     const ImageElement = screen.getByAltText("a person with a laptop")
     expect(ImageElement).toBeInTheDocument()
