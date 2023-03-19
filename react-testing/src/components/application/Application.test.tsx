@@ -19,19 +19,31 @@ describe('Application Test', ()=>{
       name: 'Name'
     })
 
+    const customElement = screen.getByTestId("custom-element")
+    expect(customElement).toBeInTheDocument()
+
+    const closeElement = screen.getByTitle("close")
+    expect(closeElement).toBeInTheDocument()
+    
     const paragraphElement = screen.getByText("All fields are mandatory")
     expect(paragraphElement).toBeInTheDocument()
-
+    
+    const ImageElement = screen.getByAltText("a person with a laptop")
+    expect(ImageElement).toBeInTheDocument()
+    
     expect(nameElement).toBeInTheDocument()
     const nameElement2 = screen.getByLabelText('Name', {
       selector: 'input'
     })
     expect(nameElement2).toBeInTheDocument()
-
+    
     const nameElement3 = screen.getByPlaceholderText('Fullname', {
       exact: true
     })
     expect(nameElement3).toBeInTheDocument()
+
+    const nameElement4 = screen.getByDisplayValue("Vishwas")
+    expect(nameElement4).toBeInTheDocument()
 
     let bioElement = screen.getByRole("textbox", {
       name: 'Bio'
