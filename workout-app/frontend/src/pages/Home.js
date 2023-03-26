@@ -1,8 +1,28 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import WorkoutDetails from './WorkoutDetails'
 
 const Home = () => {
+  const [workouts, setWorkouts] = useState(null)
+  useEffect(() => {
+    const fetchWorkouts = async()=>{
+      const response = await fetch('/api/workouts')
+      const responseJson = await response.json()
+      if(responseJson.message==='Successfull'){
+        setWorkouts(responseJson.data)
+      }
+    }
+    fetchWorkouts()
+  },[])
+
   return (
-    <div>Hello World</div>
+    <div className='home'>
+      <div className='workouts'>
+        {workouts && workouts.map((workout)=>(  
+          <WorkoutDetails key={workout._id}workout={workout}/>
+        ))
+        }
+      </div>
+    </div>
   )
 }
 
