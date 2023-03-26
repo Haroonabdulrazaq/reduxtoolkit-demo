@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import WorkoutForm from '../components/WorkoutForm'
 import WorkoutDetails from './WorkoutDetails'
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
       }
     }
     fetchWorkouts()
-  },[])
+  })
 
   return (
     <div className='home'>
@@ -22,6 +23,7 @@ const Home = () => {
         ))
         }
       </div>
+      <WorkoutForm />
     </div>
   )
 }

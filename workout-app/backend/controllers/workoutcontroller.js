@@ -17,9 +17,9 @@ export const createWorkout = async(req, res)=>{
   const {title, reps, load } = req.body
   try{
     const workout = await Workout.create({title, reps, load})
-    res.status(200).json({message: 'Workout created successfully', workout})
+    res.json({status: 201, message: 'Workout created successfully', workout})
   }catch(error){
-    res.status(400).json({message: 'An error occured when creating a workout', error: error.message})
+    res.json({status: 400, message: 'An error occured when creating a workout', error: error.message})
   }
 }
 
