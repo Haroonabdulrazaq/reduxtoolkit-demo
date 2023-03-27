@@ -15,6 +15,13 @@ export const getAllWorkouts = async(req, res)=>{
 //CREATE a Workout 
 export const createWorkout = async(req, res)=>{
   const {title, reps, load } = req.body
+  const emptyFields =[]
+  checkEmpty(emptyFields, 'title', title)
+  checkEmpty(emptyFields, 'reps', reps)
+  checkEmpty(emptyFields, 'load', load)
+  if(emptyFields.length > 0){
+    return res.json({status: 400, error: 'Please fill in all required fields', emptyFields})
+  }
   try{
     const workout = await Workout.create({title, reps, load})
     res.json({status: 201, message: 'Workout created successfully', workout})
@@ -82,5 +89,11 @@ export const updateWorkout = async(req, res) =>{
     res.json({status: 201, message: 'Updated Successfully', workout})
   }catch(error) {
     res.json({status: 400, message: 'Oops!, an error occured, while updating workout'})
+  }
+}
+
+const checkEmpty=(emptyFields, fieldString, fieldName) =>{
+  if(!fieldName) {
+    emptyFields.push(fieldString)
   }
 }
