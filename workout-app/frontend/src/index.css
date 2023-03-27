@@ -83,6 +83,10 @@ header a {
   color: #333;
 }
 
+.delete {
+  color: var(--error);
+}
+
 /* new workout form */
 label,
 input {

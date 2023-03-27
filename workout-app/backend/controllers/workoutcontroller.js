@@ -34,7 +34,7 @@ export const getWorkout = async(req, res) =>{
     if(!workout) {
       return res.status(404).json({message: 'Workout does not exist'})
     }
-    res.status(200).json({message: 'Successfull', data: workout})
+    res.json({status: 200, message: 'Successfull', data: workout})
   }catch(error) {
     return res.status(400).json({message: 'Oops! an error occured while fetching workout', error: error.message})
   }
@@ -44,16 +44,17 @@ export const getWorkout = async(req, res) =>{
 export const deleteWorkout = async(req, res)=>{
   const {id} = req.params
   if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such workout'})
+    return res.json({status: 404, error: 'No such workout'})
   }
   try{
     const workout = await Workout.findOneAndDelete({_id: id})
     if(!workout) {
-      return res.status(404).json({message: 'Workout does not exist'})
+      return res.json({status: 404, message: 'Workout not found'})
     }
-    res.status(200).json({message: 'Deleted successfully', workout})
+    res.json({status: 200, message: 'Deleted successfully', workout})
   }catch(error) {
-    res.status(400).json({
+    res.json({ 
+      status: 400,
       message: 'Oops!, an error occured while deleting workout',
       error: error.message
     })
