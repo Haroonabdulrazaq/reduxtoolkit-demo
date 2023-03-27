@@ -4,18 +4,18 @@ import WorkoutDetails from './WorkoutDetails'
 import { useWorkoutsContext } from '../hooks/useWorkerContext'
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState(null)
-  const {state, dispatch} = useWorkoutsContext()
+  const {workouts, dispatch} = useWorkoutsContext()
+  
   useEffect(() => {
     const fetchWorkouts = async()=>{
       const response = await fetch('/api/workouts')
       const responseJson = await response.json()
       if(responseJson.message==='Successfull'){
-        dispatch({type: 'SET WORKOUT', payload: responseJson.data})
+        dispatch({type: 'SET_WORKOUTS', payload: responseJson.data})
       }
     }
     fetchWorkouts()
-  },[workouts])
+  },[])
 
   return (
     <div className='home'>

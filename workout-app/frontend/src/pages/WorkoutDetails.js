@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { WorkoutsContext } from '../index';
+import { useWorkoutsContext } from '../hooks/useWorkerContext';
 
 const WorkoutDetails = ({workout}) => {
+  const {workouts, dispatch} = useWorkoutsContext()
 
   const handleDelete = async(id)=>{
     const response = await fetch(`/api/workouts/${id}`,{
@@ -11,6 +13,11 @@ const WorkoutDetails = ({workout}) => {
         "Content-Type": "application/json"
       }
     })
+    const data = await response.json()
+    console.log(data);
+    if(data.status >=200 && data.status<=203){
+      dispatch({type: 'DELETE_WORKOUT', payload: data.workout })
+    }
   }
   return (
     <div className='workout-details'>

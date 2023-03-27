@@ -67,7 +67,7 @@ export const updateWorkout = async(req, res) =>{
   const {title, reps, load } = req.body
   const {id}  = req.params
   if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({message: 'No such workout'})
+    return res.json({status: 404, message: 'No such workout'})
   }
 
   try{
@@ -77,10 +77,10 @@ export const updateWorkout = async(req, res) =>{
       {new: true }  // Same as {returnOriginal: false}
     )
     if(!workout) {
-      return res.status(404).json({message: 'Workout does not exist'})
+      return res.json({status: 404, message: 'Workout does not exist'})
     }
-    res.status(201).json({message: 'Updated Successfully', workout})
+    res.json({status: 201, message: 'Updated Successfully', workout})
   }catch(error) {
-    res.status(400).json({message: 'Oops!, an error occured, while updating workout'})
+    res.json({status: 400, message: 'Oops!, an error occured, while updating workout'})
   }
 }
