@@ -2,6 +2,7 @@ import React from 'react';
 import { MdDelete } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
 import { useWorkoutsContext } from '../hooks/useWorkerContext';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({workout}) => {
   const {state, dispatch} = useWorkoutsContext()
@@ -29,7 +30,7 @@ const WorkoutDetails = ({workout}) => {
       <h4>{workout.title}</h4>
       <p><strong>Load(kg): </strong> {workout.load}</p>
       <p><strong>Reps: </strong> {workout.reps}</p>
-      <p>{workout.createdAt}</p>
+      <p>{formatDistanceToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
       <span  onClick={()=>handleDelete(workout._id)}><MdDelete className='delete'/></span>
       <span  onClick={()=>handleEdit(workout._id)}><FaPen className='edit'/></span>
     </div>
