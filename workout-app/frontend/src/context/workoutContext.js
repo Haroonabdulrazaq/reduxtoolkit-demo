@@ -36,10 +36,11 @@ export const workoutsReducer = (state=initialState, action) => {
         isEditing: true
       }
       case 'EDIT_COMPLETE':
+        const otherWorkouts = state.workouts.filter((w)=> w._id !== action.workout._id)
       return {
         ...state,
-        workouts: state.workouts,
-        isEditing: action.payload
+        isEditing: action.payload,
+        workouts: [action.workout,...otherWorkouts]
       }
     default:
       return state

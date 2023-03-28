@@ -67,8 +67,8 @@ const WorkoutForm = () => {
     });
   };
 
-  const cancelEdit = () => {
-    dispatch({type: 'EDIT_COMPLETE', payload: false })
+  const cancelEdit = (workout) => {
+    dispatch({type: 'EDIT_COMPLETE', payload: false, workout })
     setWorkoutForm({ title: '', reps: 0, load: '' });
   }
 
@@ -83,8 +83,7 @@ const WorkoutForm = () => {
     const data = await response.json()
     console.log('my data',data);
     if(data.status >=200 && data.status<=203){
-      cancelEdit()
-      dispatch({type: 'GET_WORKOUTS'})
+      cancelEdit(data.workout)
     }
   }
 
