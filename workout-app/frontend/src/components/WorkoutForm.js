@@ -81,7 +81,6 @@ const WorkoutForm = () => {
       }
     })
     const data = await response.json()
-    console.log('my data',data);
     if(data.status >=200 && data.status<=203){
       cancelEdit(data.workout)
     }
