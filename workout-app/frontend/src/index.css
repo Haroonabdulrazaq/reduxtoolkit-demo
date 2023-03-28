@@ -73,18 +73,40 @@ header a {
 }
 
 .workout-details span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   cursor: pointer;
   background: #f1f1f1;
-  padding: 6px;
-  border-radius: 50%;
-  color: #333;
+  cursor: pointer;
 }
 
 .delete {
   color: var(--error);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  background: #f1f1f1;
+}
+
+.edit {
+  color: var(--primary);
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  background: #f1f1f1;
+}
+
+.cancel-edit {
+  background: var(--error);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 /* new workout form */

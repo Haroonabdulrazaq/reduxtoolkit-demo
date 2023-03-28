@@ -4,7 +4,7 @@ import WorkoutDetails from './WorkoutDetails'
 import { useWorkoutsContext } from '../hooks/useWorkerContext'
 
 const Home = () => {
-  const {workouts, dispatch} = useWorkoutsContext()
+  const {state, dispatch} = useWorkoutsContext()
   
   useEffect(() => {
     const fetchWorkouts = async()=>{
@@ -16,7 +16,7 @@ const Home = () => {
     }
     fetchWorkouts()
   },[])
-
+  const {workouts} = state;
   return (
     <div className='home'>
       <div className='workouts'>

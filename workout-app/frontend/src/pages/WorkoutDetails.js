@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MdDelete } from 'react-icons/md';
-import { WorkoutsContext } from '../index';
+import { FaPen } from 'react-icons/fa';
 import { useWorkoutsContext } from '../hooks/useWorkerContext';
 
 const WorkoutDetails = ({workout}) => {
-  const {workouts, dispatch} = useWorkoutsContext()
+  const {state, dispatch} = useWorkoutsContext()
 
   const handleDelete = async(id)=>{
     const response = await fetch(`/api/workouts/${id}`,{
@@ -14,9 +14,14 @@ const WorkoutDetails = ({workout}) => {
       }
     })
     const data = await response.json()
-    console.log(data);
     if(data.status >=200 && data.status<=203){
       dispatch({type: 'DELETE_WORKOUT', payload: data.workout })
+    }
+  }
+  const handleEdit = async(id)=>{
+    let editWorkoutData =  state.workouts.filter(workout => workout._id === id)
+    if(editWorkoutData.length>0){
+      dispatch({type: 'EDIT_WORKOUT', payload: editWorkoutData[0] })
     }
   }
   return (
@@ -26,6 +31,7 @@ const WorkoutDetails = ({workout}) => {
       <p><strong>Reps: </strong> {workout.reps}</p>
       <p>{workout.createdAt}</p>
       <span  onClick={()=>handleDelete(workout._id)}><MdDelete className='delete'/></span>
+      <span  onClick={()=>handleEdit(workout._id)}><FaPen className='edit'/></span>
     </div>
   )
 }
