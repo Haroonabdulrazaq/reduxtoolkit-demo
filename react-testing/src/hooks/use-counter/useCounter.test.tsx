@@ -2,6 +2,8 @@ import {renderHook} from '@testing-library/react'
 import { useCounter } from './useCounter'
 import { act } from 'react-dom/test-utils'
 
+
+// How to add test for custom Hooks
 describe('useCounter', ()=>{
 
   test('Should render the initial count', ()=>{
