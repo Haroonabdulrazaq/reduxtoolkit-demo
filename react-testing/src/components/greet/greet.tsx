@@ -1,11 +1,8 @@
-
 type GreetProps = {
-  name?: string
-}
+  name?: string;
+};
 const Greet = (props: GreetProps) => {
-  return (
-    <div>Hello {props.name? props.name: 'Guest'}</div>
-  )
-}
+  return <div>Hello {props.name ? props.name : "Guest"}</div>;
+};
 
-export default Greet
+export default Greet;

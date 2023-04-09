@@ -1,74 +1,77 @@
 import { render, screen } from "@testing-library/react";
 import Application from "./Application";
 
+describe("Application Test", () => {
+  test("Renders correctly", () => {
+    render(<Application />);
 
-describe('Application Test', ()=>{
-  test('Renders correctly',()=>{
-    render(<Application/>);
+    const pageHeading = screen.getByRole("heading", {
+      level: 1,
+    });
+    expect(pageHeading).toBeInTheDocument();
+    const sectionHeading = screen.getByRole("heading", {
+      level: 2,
+    });
+    expect(sectionHeading).toBeInTheDocument();
 
-    const pageHeading = screen.getByRole('heading', {
-      level: 1 
-    })
-    expect(pageHeading).toBeInTheDocument()
-    const sectionHeading = screen.getByRole('heading', { 
-      level: 2
-    })
-    expect(sectionHeading).toBeInTheDocument()
+    let nameElement = screen.getByRole("textbox", {
+      name: "Name",
+    });
 
-    let nameElement =  screen.getByRole("textbox", {
-      name: 'Name'
-    })
+    const customElement = screen.getByTestId("custom-element");
+    expect(customElement).toBeInTheDocument();
 
-    const customElement = screen.getByTestId("custom-element")
-    expect(customElement).toBeInTheDocument()
+    const closeElement = screen.getByTitle("close");
+    expect(closeElement).toBeInTheDocument();
 
-    const closeElement = screen.getByTitle("close")
-    expect(closeElement).toBeInTheDocument()
-    
     // Substring Match with a String
-    const paragraphElement = screen.getByText("All fields are mandatory")
-    expect(paragraphElement).toBeInTheDocument()
-    
-    // Substring Match with a Regex
-    const paragraphElement1 = screen.getByText(/^All fields are mandatory$/i)
-    expect(paragraphElement1).toBeInTheDocument()
-    
-    // Substring Match with a Custom Function
-    const paragraphElement2 = screen.getByText((content)=> content.startsWith('All'))
-    expect(paragraphElement2).toBeInTheDocument()
-    
-    const ImageElement = screen.getByAltText("a person with a laptop")
-    expect(ImageElement).toBeInTheDocument()
-    
-    expect(nameElement).toBeInTheDocument()
-    const nameElement2 = screen.getByLabelText('Name', {
-      selector: 'input'
-    })
-    expect(nameElement2).toBeInTheDocument()
-    
-    const nameElement3 = screen.getByPlaceholderText('Fullname', {
-      exact: true
-    })
-    expect(nameElement3).toBeInTheDocument()
+    const paragraphElement = screen.getByText("All fields are mandatory");
+    expect(paragraphElement).toBeInTheDocument();
 
-    const nameElement4 = screen.getByDisplayValue("Vishwas")
-    expect(nameElement4).toBeInTheDocument()
+    // Substring Match with a Regex
+    const paragraphElement1 = screen.getByText(/^All fields are mandatory$/i);
+    expect(paragraphElement1).toBeInTheDocument();
+
+    // Substring Match with a Custom Function
+    const paragraphElement2 = screen.getByText((content) =>
+      content.startsWith("All")
+    );
+    expect(paragraphElement2).toBeInTheDocument();
+
+    const ImageElement = screen.getByAltText("a person with a laptop");
+    expect(ImageElement).toBeInTheDocument();
+
+    expect(nameElement).toBeInTheDocument();
+    const nameElement2 = screen.getByLabelText("Name", {
+      selector: "input",
+    });
+    expect(nameElement2).toBeInTheDocument();
+
+    const nameElement3 = screen.getByPlaceholderText("Fullname", {
+      exact: true,
+    });
+    expect(nameElement3).toBeInTheDocument();
+
+    const nameElement4 = screen.getByDisplayValue("Vishwas");
+    expect(nameElement4).toBeInTheDocument();
 
     let bioElement = screen.getByRole("textbox", {
-      name: 'Bio'
-    })
-    expect(bioElement).toBeInTheDocument()
+      name: "Bio",
+    });
+    expect(bioElement).toBeInTheDocument();
 
-    let jobLocationElement = screen.getByRole("combobox")
-    expect(jobLocationElement).toBeInTheDocument()
-    
-    let checkBoxElement = screen.getByRole("checkbox")
-    expect(checkBoxElement).toBeInTheDocument()
+    let jobLocationElement = screen.getByRole("combobox");
+    expect(jobLocationElement).toBeInTheDocument();
 
-    const checkBoxElement2 = screen.getByLabelText("I agree to the terms and conditions")
-    expect(checkBoxElement2).toBeInTheDocument()
+    let checkBoxElement = screen.getByRole("checkbox");
+    expect(checkBoxElement).toBeInTheDocument();
 
-    let buttonElement = screen.getByRole("button")
-    expect(buttonElement).toBeInTheDocument()
-  })
-})
+    const checkBoxElement2 = screen.getByLabelText(
+      "I agree to the terms and conditions"
+    );
+    expect(checkBoxElement2).toBeInTheDocument();
+
+    let buttonElement = screen.getByRole("button");
+    expect(buttonElement).toBeInTheDocument();
+  });
+});
