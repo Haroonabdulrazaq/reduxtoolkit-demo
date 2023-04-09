@@ -1,3 +1,3 @@
 export type SkillProps = {
-  skills: string[];
-};
+  skills: string[]
+}
