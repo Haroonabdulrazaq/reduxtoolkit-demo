@@ -23,13 +23,15 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\"",
-    "coverage": "react-scripts test --coverage --watchAll collectCoverageFrom=`./src/components/*/*.{tsx,ts}`"
+    "coverage": "react-scripts test --coverage --watchAll collectCoverageFrom=`./src/components/*/*.{tsx,ts}`",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
-      "plugin:jest-dom/recommended"
+      "plugin:jest-dom/recommended",
+      "eslint-config-prettier"
     ]
   },
   "browserslist": {
@@ -55,8 +57,10 @@
     }
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "msw": "^1.2.1",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "husky": "^8.0.0"
   }
 }
