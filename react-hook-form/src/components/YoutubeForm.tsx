@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray, FieldErrors } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
 type FormValues = {
@@ -22,12 +22,12 @@ export const YouTubeForm = () => {
 
   const form = useForm<FormValues>({
     defaultValues: {
-      username: 'Vishwas',
-      email: 'Vishwas@mail.com',
-      channel: 'Codevolution',
+      username: '',
+      email: '',
+      channel: '',
       social: {
-        twitter: '@Vishwas',
-        facebook: 'Vishwasprofile'
+        twitter: '',
+        facebook: ''
       },
       phoneNumbers: ["1234345542", "679434345542"],
       phNumbers: [{number: ''}],
@@ -36,9 +36,12 @@ export const YouTubeForm = () => {
     }
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues } = form;
-  const { errors } = formState;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
 
+  const { errors, dirtyFields, touchedFields, isDirty } = formState;
+  console.log('dirtyFields', dirtyFields);
+  console.log('touchedFields', touchedFields);
+  console.log('isDirty', isDirty);
   // const watchUsername = watch();
 
  const { fields, append, remove } = useFieldArray({
@@ -49,23 +52,34 @@ export const YouTubeForm = () => {
   const handleGetValues = () =>{
     console.log('GetValues', getValues("social.facebook"));
   }
+  const handleSetValues = () =>{
+    setValue("social.facebook", "new value", {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true
+    });
+  }
   const onSubmit = (data: FormValues) => {
     console.log(data);
   }
 
+  const onError = (errors: FieldErrors<FormValues>) =>{
+    console.log(errors);
+  }
+
   useEffect(()=>{
     const subscribe = watch((value)=> {
-      console.log(value);
+      console.log("value", value);
     });
     return ()=> subscribe.unsubscribe();
-  }, [watch])
+  }, [])
 
   return (
     <div>
       <h1>YouTube Form </h1>
       {/* <h3>Watched Value {JSON.stringify(watchUsername)}</h3> */}
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
         <div className='form-control'>    
           <label htmlFor="username">Username</label>
           <input type="text" id="username" {...register("username", {
@@ -100,8 +114,9 @@ export const YouTubeForm = () => {
         <div className='form-control'>
           <label htmlFor="twitter">Twitter</label>
           <input type="text" id="twitter" {...register("social.twitter", {
+            disabled: Boolean(watch("channel") === ''),
             required: {
-             value: true,
+              value: true,
               message: "Twitter is required mdfka" 
             }
           })} />
@@ -161,6 +176,7 @@ export const YouTubeForm = () => {
         </div>  
         <button>Submit</button>
         <button type='button' onClick={handleGetValues}>Get Value</button>
+        <button type='button' onClick={handleSetValues}>Set Value</button>
       </form>
       <DevTool control={control}/>
     </div>
