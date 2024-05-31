@@ -20,6 +20,7 @@ type FormValues = {
 export const YouTubeForm = () => {
 
   const form = useForm<FormValues>({
+    mode: "all", // all, onBlur, onChange and onTouched, onSubmit-Default
     defaultValues: {
       username: 'Vishwas',
       email: 'Sincere@april.biz',

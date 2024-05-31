@@ -1,11 +1,10 @@
-import React from 'react'
 import './App.css'
-import { YouTubeForm } from './components/YoutubeForm'
+import { ZodYouTubeForm } from './components/ZodYoutubeForm'
 
 function App() {
   return (
     <>
-      <YouTubeForm />
+      <ZodYouTubeForm />
     </>
   )
 }
